@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<conio.h>
+
+int main()
+{
+ int arr[10],i,j,k,n,temp;
+ 
+ printf("Enter the size of array:");
+ scanf("%d",&n);
+ printf("Enter the elements to be sort:");
+ for(i=0;i<n;i++)
+ {
+ 	scanf("%d",&arr[i]);
+ }
+ 
+ for (i=1;i<n;i++)
+ {
+ 	for(j=i;j>0;j--)
+ 	{
+ 		if (arr[j-1]>arr[j])
+ 		{
+ 			temp=arr[j];
+ 			arr[j]=arr[j-1];
+ 			arr[j-1]=temp;
+		 }	printf("\nAfter comparison: ");
+		for(k=0;k<n;k++)
+		{
+			printf("%d ",arr[k]);
+		}
+	 }
+ }
+ 
+ printf("\nAfter insertion sort:\n");
+ for(i=0;i<n;i++)
+ {
+ 	printf("%d ",arr[i]);
+ }
+return 0;
+}
