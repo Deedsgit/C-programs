@@ -1,0 +1,135 @@
+#include <stdio.h>
+#include <conio.h>
+
+// C program for deletion of node in linked list
+// create a node
+struct node
+{
+    int data;
+    struct node *next;
+};
+// Create functions for static
+void create();         // create(node_name,no. of node,i=1)
+void show();           // show(node_name)
+void delatbeg(); 
+void delatend();    
+void delatanypos(); 
+
+
+int main()
+{
+    int a;
+    printf("1. Dynamic linkedlist\n\n2. Static linkedlist (having 6 nodes)\n");
+    printf("\nChoose 1 OR 2: ");
+    scanf("%d", &a);
+    if (a == 2)
+    {
+        printf("Enter the value of 6 nodes:\n\n");
+        struct node *head = NULL;
+        head = (struct node*)malloc(sizeof(struct node));
+        create(head, 6, 1);
+        delatbeg(&head);
+        delatend(&head);
+        delatanypos(&head);
+        show(head);
+    }
+    if (a == 1)
+    {
+        struct node *head = NULL;
+        head = (struct node*)malloc(sizeof(struct node));
+        create1(head,0,1);
+        delatbeg(&head);
+        delatend(&head);
+        delatanypos(&head);
+        show(head);
+    }
+    printf("\n\nNode at Beginning deleted\nNode at End deleted\nNode with given value deleted");
+    getch();
+    return 0;
+}
+
+void create(struct node *list, int n, int i)
+{
+    int x;
+    printf("Enter value of node %d:", i);
+    scanf("%d", &x);
+    list->data = x;
+    if (n > 1)
+    {
+        list->next =(struct node *)malloc(sizeof(struct node));
+        create(list->next, n - 1, i + 1);
+    }
+    else
+    {
+        list->next = NULL;
+    }
+}
+void show(struct node *list)
+{
+    printf("\nlinked list :\n");
+    while (list != NULL)
+    {
+        printf(" %d--->", list->data);
+        list = list->next;
+    }
+}
+
+// Delete at beginning
+void delatbeg(struct node **head)
+{
+    struct node *temp;
+    temp=*head;
+    (*head)=(*head)->next;
+    free(temp);
+    
+}
+// Delete at End
+void delatend(struct node **list)
+{
+    
+    struct node *last = *list;
+    while (last->next->next != NULL)
+    {
+        last = last->next;
+    }
+    last->next=NULL;
+    
+    
+    
+}
+// Delete at any position
+void delatanypos(struct node **list)
+{
+	int value;
+	printf("Enter value to delete:");
+	scanf("%d",&value);
+    struct node* temp=*list;
+    while (temp->next->data != value)
+    {
+        temp = temp->next;
+    }
+    if(temp->next->data == value)
+    {	
+ 		temp->next=temp->next->next;
+	}
+	
+}
+
+void create1(struct node *list, int n, int i)
+{
+    int x;
+    printf("Enter no. of node to create:");
+    scanf("%d", &n);
+    printf("\nEnter value of node %d:", i);
+    scanf("%d", &x);
+    list->data = x;
+    if (n > 1)
+    {
+        list->next = (struct node *)malloc(sizeof(struct node));
+        create(list->next, n - 1, i + 1);
+    }
+    else
+    {
+        list->next = NULL;
+    }
+}
