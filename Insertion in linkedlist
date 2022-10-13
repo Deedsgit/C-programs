@@ -33,7 +33,9 @@ int main()
         head = (struct node *)malloc(sizeof(struct node));
         create(head, 5, 1);
         insertatbeg(&head, 100);
+        show(head);
         insertatend(&head, 800);
+        show(head);
         insertatanypos(head, 3, 500);
         show(head);
     }
@@ -43,7 +45,9 @@ int main()
         head = (struct node *)malloc(sizeof(struct node));
         create1(head, 0, 1);
         insertatbeg1(&head);
+        show(head);
         insertatend1(&head);
+        show(head);
         insertatanypos1(head);
         show(head);
     }
@@ -54,7 +58,7 @@ int main()
 void create(struct node *list, int n, int i)
 {
     int x;
-    printf("Enter value of node %d:", i);
+    printf("\nEnter value of node %d:", i);
     scanf("%d", &x);
     list->data = x;
     if (n > 1)
@@ -84,6 +88,7 @@ void insertatbeg(struct node **head, int x)
     n1->data = x;
     n1->next = (*head);
     (*head) = n1;
+    
 }
 // Insert at End
 void insertatend(struct node **list, int x)
@@ -134,7 +139,7 @@ void create1(struct node *list, int n, int i)
 void insertatbeg1(struct node **head)
 {
     int x;
-    printf("Enter value to insert at beginning:");
+    printf("\nEnter value to insert at beginning:");
     scanf("%d", &x);
     struct node *n1 = (struct node *)malloc(sizeof(struct node));
     n1->data = x;
@@ -145,7 +150,7 @@ void insertatbeg1(struct node **head)
 void insertatend1(struct node **list)
 {
     int x;
-    printf("Enter value to insert at End:");
+    printf("\nEnter value to insert at End:");
     scanf("%d", &x);
     struct node *node1 = (struct node *)malloc(sizeof(struct node));
     struct node *last = *list;
@@ -161,10 +166,10 @@ void insertatend1(struct node **list)
 void insertatanypos1(struct node *list)
 {
     int pos, value;
-    printf("Enter value and postition to insert :");
+    printf("\nEnter value and postition to insert :");
     printf("\nEnter value:");
     scanf("%d", &value);
-    printf("Enter poition:");
+    printf("\nEnter poition:");
     scanf("%d", &pos);
     struct node *newnode = (struct node *)malloc(sizeof(struct node));
     newnode->data = value;
