@@ -29,7 +29,9 @@ int main()
         head = (struct node*)malloc(sizeof(struct node));
         create(head, 6, 1);
         delatbeg(&head);
+        show(head);
         delatend(&head);
+        show(head);
         delatanypos(&head);
         show(head);
     }
@@ -39,11 +41,13 @@ int main()
         head = (struct node*)malloc(sizeof(struct node));
         create1(head,0,1);
         delatbeg(&head);
+        show(head);
         delatend(&head);
+        show(head);
         delatanypos(&head);
         show(head);
     }
-    printf("\n\nNode at Beginning deleted\nNode at End deleted\nNode with given value deleted");
+    printf("\nNode with given value deleted");
     getch();
     return 0;
 }
@@ -81,6 +85,7 @@ void delatbeg(struct node **head)
     temp=*head;
     (*head)=(*head)->next;
     free(temp);
+    printf("\nNode at Beginning deleted:");
     
 }
 // Delete at End
@@ -93,15 +98,13 @@ void delatend(struct node **list)
         last = last->next;
     }
     last->next=NULL;
-    
-    
-    
+    printf("\nNode at End deleted:");
 }
 // Delete at any position
 void delatanypos(struct node **list)
 {
 	int value;
-	printf("Enter value to delete:");
+	printf("\nEnter value to delete:");
 	scanf("%d",&value);
     struct node* temp=*list;
     while (temp->next->data != value)
