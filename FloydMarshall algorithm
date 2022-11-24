@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+#define INF 999
+void floyd();
+void printmat();
+void main()
+{
+    int i, j, arr[4][4] = {{0, 3, INF, 7}, {8, 0, 2, INF}, {5, INF, 0, 1}, {2, INF, INF, 0}};
+
+    printf("Given A0 matrix:\n");
+
+    for (i = 0; i < 4; i++)
+    {
+        for (j = 0; j < 4; j++)
+        {
+            if (arr[i][j] == INF)
+                printf("%4s ", "INF");
+            else
+                printf("%4d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\nAfter applying floyd Marshall algo:-\n");
+    floyd(arr);
+}
+
+void floyd(int arr[][4])
+{
+    int matrix[4][4], i, j, k;
+
+    for (i = 0; i < 4; i++)
+    {
+        for (j = 0; j < 4; j++)
+        {
+            matrix[i][j] = arr[i][j];
+        }
+    }
+
+    for (k = 0; k < 4; k++)
+    {
+        for (i = 0; i < 4; i++)
+        {
+            for (j = 0; j < 4; j++)
+            {
+                if (matrix[i][k] + matrix[k][j] < matrix[i][j])
+                    matrix[i][j] = matrix[i][k] + matrix[k][j];
+            }
+        }
+    }
+    printmat(matrix);
+}
+void printmat(int matrix[][4])
+{
+    int i, j;
+    for (i = 0; i < 4; i++)
+    {
+        for (j = 0; j < 4; j++)
+        {
+            if (matrix[i][j] == INF)
+                printf("%4s", "INF");
+            else
+                printf("%4d", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
